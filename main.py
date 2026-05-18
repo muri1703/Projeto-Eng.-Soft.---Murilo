@@ -46,7 +46,7 @@ class ArquivoResponse(BaseModel):
 
 # Rotas HTTP
 
-@app.post("/api/arquivos/", response_model=ArquivoResponse)
+@app.post("/api/arquivos/projeto/{projeto_id}", response_model=ArquivoResponse)
 async def fazer_upload(
         projeto_id: int = Form(...),
         file: UploadFile = File(...)
