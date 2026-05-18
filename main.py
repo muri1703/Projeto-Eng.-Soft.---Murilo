@@ -46,7 +46,7 @@ class ArquivoResponse(BaseModel):
 
 # Rotas HTTP
 
-@app.post("/api/arquivos/projeto/{projeto_id}", response_model=ArquivoResponse)
+@app.post("/api/postarquivos/projeto/{projeto_id}", response_model=ArquivoResponse)
 async def fazer_upload(
         projeto_id: int = Form(...),
         file: UploadFile = File(...)
@@ -66,7 +66,7 @@ async def fazer_upload(
         raise HTTPException(status_code=500, detail=f"Erro interno: {str(erro)}")
 
 
-@app.get("/api/arquivos/projeto/{projeto_id}", response_model=List[ArquivoResponse])
+@app.get("/api/getarquivos/projeto/{projeto_id}", response_model=List[ArquivoResponse])
 def listar_arquivos_do_projeto(projeto_id: int):
     """Lista os metadados de todos os ficheiros pertencentes a um projeto."""
     return listar_use_case.executar(projeto_id=projeto_id)
